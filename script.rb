@@ -3,10 +3,9 @@ require 'json'
 require 'digest/md5'
 
 # Lee las claves de la API desde el archivo credentials.json
-credentials_file = File.read('credentials.json')
-credentials = JSON.parse(credentials_file)
-public_key = credentials['public_key']
-private_key = credentials['private_key']
+public_key = ENV['PUBLIC_KEY']
+private_key = ENV['PRIVATE_KEY']
+
 
 ts = Time.now.to_i.to_s
 hash = Digest::MD5.hexdigest(ts + private_key + public_key)
